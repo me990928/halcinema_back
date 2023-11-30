@@ -16,7 +16,12 @@ from model.m_screen_types import ScreenType
 from model.m_ticket_types import TicketType
 from model.m_users import User
 from model.t_appointments import Appointment
-
+from model.t_appointment_details import AppointmentDetail
+from model.t_general_inquiries import GeneralInquiry
+from model.t_member_genres import MemberGenre
+from model.t_payments import Payment
+from model.t_seats import Seat
+from model.t_theater_schedules import TheaterSchedule
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -42,7 +47,13 @@ target_metadata = [
     ScreenType.metadata,
     TicketType.metadata,
     User.metadata,
-    Appointment.metadata
+    Appointment.metadata,
+    AppointmentDetail.metadata,
+    GeneralInquiry.metadata,
+    MemberGenre.metadata,
+    Payment.metadata,
+    Seat.metadata,
+    TheaterSchedule.metadata
     ]
 
 # other values from the config, defined by the needs of env.py,
