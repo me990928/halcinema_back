@@ -9,6 +9,14 @@ from model.test import Test
 from model.m_advertisements import Advertisement
 from model.m_advertisement_types import AdvertisementType
 from model.m_movies import Movie
+from model.m_movie_genres import MovieGenre
+from model.m_movie_titles import MovieTitle
+from model.m_screens import Screen
+from model.m_screen_types import ScreenType
+from model.m_ticket_types import TicketType
+from model.m_users import User
+from model.t_appointments import Appointment
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -27,7 +35,14 @@ target_metadata = [
     Test.metadata, 
     Advertisement.metadata, 
     AdvertisementType.metadata, 
-    Movie.metadata
+    Movie.metadata,
+    MovieGenre.metadata,
+    MovieTitle.metadata,
+    Screen.metadata,
+    ScreenType.metadata,
+    TicketType.metadata,
+    User.metadata,
+    Appointment.metadata
     ]
 
 # other values from the config, defined by the needs of env.py,
