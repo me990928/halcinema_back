@@ -6,6 +6,22 @@ from sqlalchemy import pool
 from alembic import context
 
 from model.test import Test
+from model.m_advertisements import Advertisement
+from model.m_advertisement_types import AdvertisementType
+from model.m_movies import Movie
+from model.m_movie_genres import MovieGenre
+from model.m_movie_titles import MovieTitle
+from model.m_screens import Screen
+from model.m_screen_types import ScreenType
+from model.m_ticket_types import TicketType
+from model.m_users import User
+from model.t_appointments import Appointment
+from model.t_appointment_details import AppointmentDetail
+from model.t_general_inquiries import GeneralInquiry
+from model.t_member_genres import MemberGenre
+from model.t_payments import Payment
+from model.t_seats import Seat
+from model.t_theater_schedules import TheaterSchedule
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -20,7 +36,25 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = Test.metadata
+target_metadata = [
+    Test.metadata, 
+    Advertisement.metadata, 
+    AdvertisementType.metadata, 
+    Movie.metadata,
+    MovieGenre.metadata,
+    MovieTitle.metadata,
+    Screen.metadata,
+    ScreenType.metadata,
+    TicketType.metadata,
+    User.metadata,
+    Appointment.metadata,
+    AppointmentDetail.metadata,
+    GeneralInquiry.metadata,
+    MemberGenre.metadata,
+    Payment.metadata,
+    Seat.metadata,
+    TheaterSchedule.metadata
+    ]
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
