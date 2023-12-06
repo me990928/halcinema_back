@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, LargeBinary, String, DateTime, ForeignKey
 from app.database import Base
 
 class Test(Base):
@@ -8,6 +8,7 @@ class Test(Base):
     name = Column(String)
     fullname = Column(String)
     nickname = Column(String)
+    pict = Column(LargeBinary)
 
     def __repr__(self):
         return "<User('name={}', fullname={}, nickname={})>".format(
