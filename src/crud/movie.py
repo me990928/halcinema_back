@@ -43,4 +43,4 @@ def increment_f_movie_title_id(f_movie_title_id):
     # インクリメントされたf_movie_idをMG000001のような形式に変換
     new_f_movie_title_id = "MT" + str(incremented_value).zfill(6)
 
-    return f_movie_title_id
+    return new_f_movie_title_id
