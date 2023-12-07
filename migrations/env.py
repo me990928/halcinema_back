@@ -22,6 +22,7 @@ from model.t_member_genres import MemberGenre
 from model.t_payments import Payment
 from model.t_seats import Seat
 from model.t_theater_schedules import TheaterSchedule
+from model.m_movie_pict import MoviePict
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -53,7 +54,8 @@ target_metadata = [
     MemberGenre.metadata,
     Payment.metadata,
     Seat.metadata,
-    TheaterSchedule.metadata
+    TheaterSchedule.metadata,
+    MoviePict.metadata
     ]
 
 # other values from the config, defined by the needs of env.py,
