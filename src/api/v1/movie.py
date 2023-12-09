@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter, File, UploadFile, Form
 from fastapi.params import Depends
 from typing import List, Optional
@@ -15,6 +16,8 @@ from crud.movie import add_movie_title
 from schema.movie_schema import MovieTitleSchema
 from schema.movie_schema import MoviePictSchema
 from itertools import chain
+from model.m_movie_pict import MoviePict
+
 router = APIRouter()
 
 @router.get("/", tags=["movie"])
@@ -66,4 +69,27 @@ def create_movie_title(movie_title_schema: MovieTitleSchema, db: Session = Depen
 
 @router.post("/upload_picture")
 async def upload_picture(f_movie_pict_id: Optional[int] = Form(None), f_movie_id: str = Form(...), f_movie_pict: str = Form(...), files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
+    # 画像の拡張子がjpegかの確認
+    try:
+        for file in files:
+            if file.content_type != "image/jpeg":
+                return {"msg": "画像の拡張子はjpegにしてください"}
+    except:
+        return {"msg": "画像の拡張子はjpegにしてください"}
+
+    try:
+        for file in files:
+            file_path = f"../../images/{f_movie_id}/{f_movie_pict}.jpeg"
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            with open(file_path, "wb") as buffer:
+                buffer.write(file.file.read())
+    except:
+        return {"msg": "画像の保存に失敗しました"}
+
+    movie_pict_schema = MoviePictSchema(f_movie_id=f_movie_id, f_movie_pict=f_movie_pict)
+    movie_pict = MoviePict(**movie_pict_schema.dict(exclude={"f_movie_pict_id"}))
+    db.add(movie_pict)
+    db.commit()
+    db.refresh(movie_pict)
+
     return {"msg": "success"}
