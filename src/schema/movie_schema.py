@@ -16,3 +16,9 @@ class MovieTitleSchema(BaseModel):
     f_movie_title_japan: str
     f_movie_title_foreign: str
     model_config = ConfigDict(from_attributes=True)
+
+class MoviePictSchema(BaseModel):
+    f_movie_pict_id: int | None = None
+    f_movie_id: str
+    f_movie_pict: str
+    model_config = ConfigDict(from_attributes=True)

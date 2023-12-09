@@ -6,11 +6,10 @@ Base = declarative_base()
 class MoviePict(Base):
     __tablename__ = "m_movie_pict"
 
-    movie_pict_id = Column(Integer, primary_key=True)
-    movie_id = Column(String)
-    movie_pict = Column(LargeBinary)
-    movie_pict_encoding = Column(Boolean , default=False)
-
+    f_movie_pict_id = Column(Integer, primary_key=True)
+    f_movie_id = Column(String)
+    f_movie_pict = Column(String)
+    
     def __repr__(self):
         return "<MoviePict('movie_id={}', movie_pict={}, movie_pict_encoding={})>".format(
             self.movie_id,
