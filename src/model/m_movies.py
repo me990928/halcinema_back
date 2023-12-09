@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import event
+from sqlalchemy import func
 
 Base = declarative_base()
 
