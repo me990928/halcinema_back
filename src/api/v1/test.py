@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File
 import sys
 sys.path.append("../../")
 from schema.test_schema import TestSchema
@@ -21,3 +21,10 @@ def read_root(test_schema: TestSchema, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(test)
     return {"root": "test API"}
+
+@router.post("/upload")
+async def upload_file(files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
+    for file in files:
+        contents = await file.read()
+        print(contents)
+    return {"filenames": [file.filename for file in files]}

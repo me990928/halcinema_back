@@ -1,6 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, File, UploadFile, Form
 from fastapi.params import Depends
-
+from typing import List, Optional
 import sys
 
 from sqlalchemy import select
@@ -13,6 +13,7 @@ from schema.movie_schema import MovieSchema
 from sqlalchemy.orm import Session
 from crud.movie import add_movie_title
 from schema.movie_schema import MovieTitleSchema
+from schema.movie_schema import MoviePictSchema
 from itertools import chain
 router = APIRouter()
 
@@ -62,3 +63,7 @@ def increment_f_movie_id(f_movie_id):
 @router.post("/create_title")
 def create_movie_title(movie_title_schema: MovieTitleSchema, db: Session = Depends(get_db)):
     return add_movie_title(movie_title_schema, db)
+
+@router.post("/upload_picture")
+async def upload_picture(f_movie_pict_id: Optional[int] = Form(None), f_movie_id: str = Form(...), f_movie_pict: str = Form(...), files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
+    return {"msg": "success"}
