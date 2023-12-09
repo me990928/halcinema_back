@@ -6,6 +6,7 @@ sys.path.append("../")
 from schema.movie_schema import MovieSchema, MovieTitleSchema
 from model.m_movie_titles import MovieTitle
 from app.database import get_db
+from model.m_movies import Movie
 
 def add_movie_title(movie_title_schema: MovieTitleSchema, db: Session = Depends(get_db)):
     

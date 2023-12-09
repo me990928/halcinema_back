@@ -8,17 +8,34 @@ sys.path.append("../../")
 
 from app.database import get_db
 from model.m_movies import Movie
+from model.m_movie_titles import MovieTitle
 from schema.movie_schema import MovieSchema
 from sqlalchemy.orm import Session
 from crud.movie import add_movie_title
 from schema.movie_schema import MovieTitleSchema
-
+from itertools import chain
 router = APIRouter()
 
 @router.get("/", tags=["movie"])
 def read_root():
     return {"root": "Movie API"}
 
+@router.get("/get")
+def get_movie1(db: Session = Depends(get_db)):
+    q = db.query(Movie, MovieTitle).join(Movie, Movie.f_movie_title_id == MovieTitle.f_movie_title_id).limit(100).all()
+
+    
+    return [{k: v for k, v in chain(movie.__dict__.items(), title.__dict__.items()) if not k.startswith('_')} for movie, title in q]
+
+
+    # return [{"movie": {k: v for k, v in movie[0].__dict__.items() if not k.startswith('_')}, 
+    #          "title": {k: v for k, v in movie[1].__dict__.items() if not k.startswith('_')}} for movie in q]
+
+    # query = select(Movie, MovieTitle).join(MovieTitle, Movie.f_movie_title_id == MovieTitle.f_movie_title_id).limit(100)
+    # result = db.execute(query)
+    # movies = result.scalars().all()
+    # return q[1].MovieTitle
+ 
 @router.post("/create")
 def add_movie(movie_schema: MovieSchema, db: Session = Depends(get_db)):
     # f_movie_idを取得するクエリを作成
