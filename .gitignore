@@ -3,3 +3,4 @@
 **/__pycache__/
 migrations/versions/*
 images/test_image.jpg
+images/MG*
