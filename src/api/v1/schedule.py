@@ -8,7 +8,7 @@ from app.database import get_db
 from model.t_theater_schedules import TheaterSchedule, MovieSchedule
 from model.m_movies import Movie
 from model.m_screens import Screen
-from schema.schedule_schema import MovieScheduleSchema
+from schema.schedule_schema import MovieScheduleSchema, TheaterScheduleSchema
 from sqlalchemy import select
 from itertools import chain
 import re
@@ -44,3 +44,10 @@ def get_screen(db: Session = Depends(get_db)):
 def get_screen_name(f_screen_id):
     match = re.search(r'SCR000([A-Z]\d)', f_screen_id)
     return match.group(1)[0] + match.group(1)[1]
+
+@router.post("/theater")
+def add_theater_schedule(theater_schedule_schema: TheaterScheduleSchema, db: Session = Depends(get_db)):
+    theater_schedule = TheaterSchedule(**theater_schedule_schema.dict())
+    db.add(theater_schedule)
+    db.commit()
+    return {"msg": "success"}
