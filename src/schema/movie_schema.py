@@ -22,3 +22,8 @@ class MoviePictSchema(BaseModel):
     f_movie_id: str
     f_movie_pict: str
     model_config = ConfigDict(from_attributes=True)
+
+class MovieGenreSchema(BaseModel):
+    f_genre_id: str | None = None
+    f_genre_name: str
+    model_config = ConfigDict(from_attributes=True)
