@@ -12,7 +12,7 @@ class MovieScheduleSchema(BaseModel):
 class TheaterScheduleSchema(BaseModel):
     f_theater_schedule_id: int | None = None
     f_screen_id: str
-    f_movie_schedule_id: str
+    f_movie_schedule_id: int
     f_movie_start_datetime: datetime
     f_release_end_date: datetime
 
