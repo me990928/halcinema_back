@@ -22,8 +22,8 @@ class MovieSchedule(Base):
     f_movie_schedule_id = Column(Integer, primary_key=True)
     f_movie_schedule_name = Column(String(255), nullable=False)
     f_movie_id = Column(String(8), nullable=False)
-    f_movie_start_datetime = Column(DateTime, comment='上映開始日')
-    f_movie_end_datetime = Column(DateTime, comment='上映終了日')
+    f_movie_start_datetime = Column(DateTime, comment='上映期間開始日')
+    f_movie_end_datetime = Column(DateTime, comment='上映期間終了日')
 
     def __repr__(self):
         return f"<MovieSchedule(f_movie_schedule_id={self.f_movie_schedule_id}, f_movie_schedule_name='{self.f_movie_schedule_name}', f_movie_id='{self.f_movie_id}', f_movie_start_datetime='{self.f_movie_start_datetime}', f_movie_end_datetime='{self.f_movie_end_datetime}')>"
