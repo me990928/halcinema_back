@@ -26,4 +26,4 @@ class MovieSchedule(Base):
     f_movie_end_datetime = Column(DateTime, comment='上映終了日')
 
     def __repr__(self):
-        return f"<MovieSchedule(f_movie_schedule_id={self.f_movie_schedule_id}, f_movie_id='{self.f_movie_id}', f_movie_start_datetime='{self.f_movie_start_datetime}', f_movie_end_datetime='{self.f_movie_end_datetime}', f_release_date='{self.f_release_date}', f_release_end_date='{self.f_release_end_date}')>"
+        return f"<MovieSchedule(f_movie_schedule_id={self.f_movie_schedule_id}, f_movie_schedule_name='{self.f_movie_schedule_name}', f_movie_id='{self.f_movie_id}', f_movie_start_datetime='{self.f_movie_start_datetime}', f_movie_end_datetime='{self.f_movie_end_datetime}')>"

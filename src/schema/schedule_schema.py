@@ -1,0 +1,10 @@
+from pydantic import BaseModel, ConfigDict
+from datetime import datetime
+
+class MovieScheduleSchema(BaseModel):
+    f_movie_schedule_id: int | None = None
+    f_movie_schedule_name: str
+    f_movie_id: str
+    f_movie_start_datetime: datetime
+    f_movie_end_datetime: datetime
+    model_config = ConfigDict(from_attributes=True)
