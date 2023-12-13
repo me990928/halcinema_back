@@ -17,3 +17,10 @@ class TheaterScheduleSchema(BaseModel):
     f_release_end_date: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+class ScreenModelSchema(BaseModel):
+    f_screen_id: str
+    f_screen_number: int
+    f_screen_type_id: str
+
+    model_config = ConfigDict(from_attributes=True)

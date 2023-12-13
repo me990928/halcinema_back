@@ -51,3 +51,8 @@ def add_theater_schedule(theater_schedule_schema: TheaterScheduleSchema, db: Ses
     db.add(theater_schedule)
     db.commit()
     return {"msg": "success"}
+
+@router.get("/screen")
+def get_screen(db: Session = Depends(get_db)):
+    q = db.query(Screen).limit(100)
+    return [{**{k: v for k, v in screen.__dict__.items() if not k.startswith('_')}, "screen_name": get_screen_name(screen.f_screen_id)} for screen in q]
